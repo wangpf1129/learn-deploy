@@ -1,0 +1,17 @@
+version: "3"
+services:
+  app:
+    # build: 从当前路径构建镜像
+    build:
+      context: .
+      dockerfile: node.Dockerfile
+    ports:
+      - 3000:3000
+  nginx-app:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    ports:
+      - 3100:80
+    depends_on:
+      - app
