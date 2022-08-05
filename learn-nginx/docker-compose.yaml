@@ -41,13 +41,13 @@ services:
     volumes:
       - ./order2.conf:/etc/nginx/conf.d/default.conf
       - .:/usr/share/nginx/html
-  # order3:
-  #   image: nginx:alpine
-  #   ports:
-  #     - 8885:80
-  #   volumes:
-  #     - ./order3.conf:/etc/nginx/conf.d/default.conf
-  #     - .:/usr/share/nginx/html
+  order3:
+    image: nginx:alpine
+    ports:
+      - 8885:80
+    volumes:
+      - ./order3.conf:/etc/nginx/conf.d/default.conf
+      - .:/usr/share/nginx/html
   # order4:
   #   image: nginx:alpine
   #   ports:
