@@ -69,23 +69,13 @@ services:
     volumes:
       - ./50x.conf:/etc/nginx/conf.d/default.conf
       - .:/usr/share/nginx/html
-  # gzip:
-  #   image: nginx:alpine
-  #   ports:
-  #     - 8889:80
-  #   volumes:
-  #     - ./gzip.conf:/etc/nginx/conf.d/default.conf
-  #     - .:/usr/share/nginx/html
-  # # 如何为 nginx 中添加 module
-  # # https://github.com/nginxinc/docker-nginx/tree/master/modules
-  # brotli:
-  #   build:
-  #     context: ./brotli/
-  #     args:
-  #       ENABLED_MODULES: brotli
-  #   ports:
-  #     - 8900:80
-  #   volumes:
-  #     - ./brotli.conf:/etc/nginx/conf.d/default.conf
-  #     - ./brotli-nginx.conf:/etc/nginx/nginx.conf
-  #     - .:/usr/share/nginx/html
+  compress:
+    build:
+      context: .
+      dockerfile: ./compress/brotli.Dockerfile
+    ports:
+      - 8900:80
+    volumes:
+      - ./compress/compress.conf:/etc/nginx/conf.d/default.conf
+      - ./compress/compress.nginx.conf:/etc/nginx/nginx.conf
+      - .:/usr/share/nginx/html
